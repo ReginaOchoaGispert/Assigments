@@ -10,8 +10,8 @@
 
 <body>
     <h1>Contact me</h1>
-    <form>
-        <table border="2">
+    <form id="contact_me_form" action="#" method="get">
+        <table border="0">
             <caption>Information</caption>
             <thead style="background-color: rgba(0, 255, 149, 0.5);">
                 <!-- <tr>
@@ -24,16 +24,24 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><label>Name: <input type="text" name="name" /> </label></td>
+                    <td><label for="name">Name: </label></td>
+                    <td><input type="text" name="name" /></td>
                 </tr>
                 <tr>
-                    <td><label>Email: <input type="email" name="email" /> </label></td>
+                    <td><label for="email">Email: </label></td>
+                    <td><input type="email" name="email" /></td>
                 </tr>
                 <tr>
-                    <td><label>Image: <input type="file" name="image" /> </label></td>
+                    <td><label for="image">Image: </label></td>
+                    <td><input type="file" name="image" /></td>
                 </tr>
                 <tr>
-                    <td><label>URL: <input type="url" name="url" /> </label></td>
+                    <td><label for="url">URL: </label></td>
+                    <td><input type="url" name="url" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" /></td>
                 </tr>
             </tbody>
         </table>
