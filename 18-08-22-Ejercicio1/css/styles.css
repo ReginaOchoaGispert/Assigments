@@ -9,6 +9,26 @@ p strong {
     background-color: chocolate;
     color: white
 }
+ol li {
+    text-decoration: overline;
+}
+
+ol li li {
+    text-decoration: line-through;
+}
+
+ol ul {
+    background-color: blueviolet;
+}
+
+.trow {
+    text-align: center;
+    background-color: blue;
+}
+
+.trow~tr {
+    text-decoration: line-through;
+}
 
 
 /* Comments for css */
@@ -23,7 +43,7 @@ p strong {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: grey;
     padding: 15px;
-    border-style: dashed; /*border-style: dashed;*/
+    border-style: dashed; /*border-style: solid;*/
     border-width: 2px;
     margin: 15px;
 }
@@ -32,6 +52,58 @@ p strong {
     background-color: green;
     color: plum;
     font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    margin: 10px;
+    font-size: x-large;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: darkslategray;
+    color: white;
+}
+
+a:visited {
+    color: red;
+}
+
+p::first-letter {
+    font-size: xx-large;
+}
+
+li::first-letter {
+    font-size: xx-large;
+}
+
+p::selection {
+    background-color: transparent;
+}
+
+input[type=number] {
+    border-color: purple;
+    border-width: 8px;
+}
+
+td {
+    width: 100px;
+    /*paddinf: 15px;*/
+    border-width: 3px;
+    border-style: dashed;
+    border-radius: 23px;
+}
+
+input {
+    width: 30px;
+    margin: 20px;
+    border-width: 3px;
+    border-style: dotted;
+    border-radius: 13px;;
+}
+
+textarea {
+    width: 20px;
 }
 
 input[type=number] {
