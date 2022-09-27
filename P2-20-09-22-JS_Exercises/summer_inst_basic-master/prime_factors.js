@@ -3,6 +3,13 @@ var getPrimeFactors = function (n) {
     var n = document.getElementById("num").value;
     let contenedor = document.getElementById("pf").textContent;
 
+    if (isPrime(n) ==true){
+        document.write("Its prime:  ");
+    }
+    if (isPrime(n) ==false){
+        document.write("Its not a prime number:  ");
+    }
+
     function isPrime(n) {
         var i;
         for (i = 2; i <= Math.sqrt(n); i++) {
