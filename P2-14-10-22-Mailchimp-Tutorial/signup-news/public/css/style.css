@@ -1,0 +1,26 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 20%;
+  padding-bottom: 50%;
+  background-color: #f5f5f5;
+
+
+}
+
+.form-signin {
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+.boton1 {
+  margin-top: 3%;
+  width: 100%;
+}
