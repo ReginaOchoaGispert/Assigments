@@ -4,7 +4,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 const https = require("https");
-const apiKey = "bd6d2f4652bc70e6a7358a383befcb9b-us9";
+const apiKey = "";
 const list_id = "c893142775";
 const url = "https://us9.api.mailchimp.com/3.0/lists/"+list_id;
 const options = {

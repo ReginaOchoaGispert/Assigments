@@ -1,5 +1,6 @@
 const express = require("express"); //get the modle into the screen, its the input
 const app = express(); //with this 2 lines we have a server
+const https = require("https");
 app.engine("ejs", require("ejs").renderFile); //11.2k (gzipped: 4.2k)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,6 +36,15 @@ app.post("/students",(req, res) =>{
 });
 app.get("/teachers/:name",(req, res) =>{
     res.send("Hello Prof. " + req.params.name);
+});
+const weatherKey = "69714dba4b57f2b2fa3e5c50900f58e2"
+app.get("/weather",(req, res) =>{
+    var link ="https://api.openweathermap.org/data/2.5/weather?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=" +
+    weatherKey;
+    https.get(link, (response) => {
+    console.log(response);
+    });
+    res.send("Data logged in console");
 });
 
 app.listen(3000,(err) => {
