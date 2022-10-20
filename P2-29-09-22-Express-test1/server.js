@@ -42,9 +42,20 @@ app.get("/weather",(req, res) =>{
     var link ="https://api.openweathermap.org/data/2.5/weather?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=" +
     weatherKey;
     https.get(link, (response) => {
-    console.log(response);
+        response.on("data", (data)=>{
+            var jsonData = JSON.parse(data); //jsonData.name
+            //console.log("Welcome to " + jsonData["name"]);
+            res.write("Welcome to " + jsonData.name);
+            res.write("\nTemp: " + jsonData["main"]["temp"]);
+            res.write("\nHumidity: " + jsonData["main"]["humidity"]);
+            res.send();
+        }).on("error",(e)=>{
+            console.log("Error ${e.message}");
+            res.send("Error ${e.message}")
+        });
+        //console.log(response);
     });
-    res.send("Data logged in console");
+    //res.send("Data logged in console");
 });
 
 app.listen(3000,(err) => {
