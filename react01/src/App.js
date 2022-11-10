@@ -3,6 +3,23 @@ import './App.css';
 import doublePi, { pi, triplePi as triPi, addition } from './myMath';
 import Card from './Card';
 import List from './List';
+import contacts from './data/contacts';
+
+function createCard(contact) {
+  return (
+    <Card
+      img={contact.img} 
+      name={contact.name} 
+      phone={contact.phone} 
+      email={contact.email} 
+    />
+  )
+}
+
+function filterCards(contact){
+  return contact.name.includes('B');
+}
+
 
 function App() {
   /**<div className="App">
@@ -22,8 +39,8 @@ function App() {
       </header>
     </div> */
     const num = 7;
-    const fName = "Regina";
-    const lName = "Ochoa";
+    const fName = "Renata";
+    const lName = "Calderon";
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const customStyle = {
@@ -35,28 +52,34 @@ function App() {
       customStyle.color = "green";
     }
     const image = "https://picsum.photos/200";
+    var subName = "B";
     var n1 = Math.floor(Math.random() * 10);
     var n2 = Math.floor(Math.random() * 10);
+    // var cards = [];
+    // contacts.forEach((contact) => {
+    //   if(contact.name.includes('B')) {
+    //     cards.push(
+    //       <Card
+    //         img={contact.img} 
+    //         name={contact.name} 
+    //         phone={contact.phone} 
+    //         email={contact.email} 
+    //       />
+    //     );
+    //   }
+    // });
+    contacts.reduce((contact, label = "Name") => {
+      contact.name += label;
+      return contact; 
+    })
     return (
     <div>
-      <Card 
-        img={ image } 
-        name="Jack Black" 
-        phone="+123456654321" 
-        email="myemail@mail.com"
-      />
-      <Card 
-        img={ image } 
-        name="Beyonce" 
-        phone="+95476823" 
-        email="beyonce@superstar.com"
-      />
-      <Card 
-        img={ image } 
-        name="Elton John" 
-        phone="+365892" 
-        email="elton@john.com"
-      />
+      {contacts
+        .filter((contact)=>{
+          return  contact.name.includes(subName)&&contact.phone.includes("56");
+        })
+        .map(createCard)}
+      {/* {cards} */}
       <h1 style = { customStyle }> Hello World { fName + " " + lName } </h1>
       <p> Lorem ipsum { year } </p> { " " } <img src = { image + "?grayscale" } alt = "random pic" / > { " " }
        { " " }
@@ -71,4 +94,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
