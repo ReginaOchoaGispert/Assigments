@@ -1,3 +1,7 @@
+body {
+  background-color: gray;
+}
+
 .App {
   text-align: center;
 }
@@ -31,6 +35,11 @@
 ul {
   background-color: blue;
   color: white;
+}
+
+img {
+  height: 200px;
+  width: 200px;
 }
 
 @keyframes App-logo-spin {

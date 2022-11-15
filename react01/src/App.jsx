@@ -1,8 +1,11 @@
 //import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 import doublePi, { pi, triplePi as triPi, addition } from './myMath';
 import Card from './Card';
 import List from './List';
+import Login from './Login';
+import TaskList from './TaskList';
 import contacts from './data/contacts';
 
 function createCard(contact) {
@@ -19,7 +22,6 @@ function createCard(contact) {
 function filterCards(contact){
   return contact.name.includes('B');
 }
-
 
 function App() {
   /**<div className="App">
@@ -39,8 +41,8 @@ function App() {
       </header>
     </div> */
     const num = 7;
-    const fName = "Renata";
-    const lName = "Calderon";
+    const fName = "Regina";
+    const lName = "Ochoa";
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const customStyle = {
@@ -53,6 +55,7 @@ function App() {
     }
     const image = "https://picsum.photos/200";
     var subName = "B";
+    var [isLoggedIn, setIsLoggedIn] = useState(false)/*false*/;
     var n1 = Math.floor(Math.random() * 10);
     var n2 = Math.floor(Math.random() * 10);
     // var cards = [];
@@ -68,18 +71,43 @@ function App() {
     //     );
     //   }
     // });
-    contacts.reduce((contact, label = "Name") => {
-      contact.name += label;
-      return contact; 
-    })
+    // contacts.reduce((contact, label = "Name") => {
+    //   contact.name += label;
+    //   return contact; 
+    // })
+
+    function logUser() {
+      setIsLoggedIn(true);
+    }
+
+    function logOutUser() {
+      setIsLoggedIn(false);
+    }
+
+    function renderContent(/*isLoggedIn,*/ subName) {
+      // if(isLoggedIn) {
+        return (
+          <div>
+            <hr />
+            <button onClick={logOutUser}>Log out</button>
+            <h1>My contacts</h1>
+            {contacts
+              .filter((contact)=>{
+                return  contact.name.includes(subName)&&contact.phone.includes("56");
+              })
+              .map(createCard)}
+          </div>
+        );
+      // } else {
+      //   return <Login />;
+      // }
+    }
     return (
     <div>
-      {contacts
-        .filter((contact)=>{
-          return  contact.name.includes(subName)&&contact.phone.includes("56");
-        })
-        .map(createCard)}
-      {/* {cards} */}
+      {isLoggedIn ? renderContent(subName) : <Login handler={logUser} />}
+      <TaskList />
+      {/*renderConditionally(isLoggedIn, subName)*/}
+      {/* {cards} 
       <h1 style = { customStyle }> Hello World { fName + " " + lName } </h1>
       <p> Lorem ipsum { year } </p> { " " } <img src = { image + "?grayscale" } alt = "random pic" / > { " " }
        { " " }
@@ -89,7 +117,7 @@ function App() {
       <h4> The value of pi is { pi } </h4>
       <h4> The double of pi is { doublePi() } </h4>
       <h4> The triple of pi is { triPi() } </h4>
-      <h3> A random number is { Math.floor(Math.random()*10) } </h3>
+      <h3> A random number is { Math.floor(Math.random()*10) } </h3>*/}
     </div>
   );
 }
