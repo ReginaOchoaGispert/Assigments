@@ -56,6 +56,8 @@ function App() {
     const image = "https://picsum.photos/200";
     var subName = "B";
     var [isLoggedIn, setIsLoggedIn] = useState(false)/*false*/;
+    // var [userName, setUserName] = useState("");
+    var [userName, setUserName] = useState({});
     var n1 = Math.floor(Math.random() * 10);
     var n2 = Math.floor(Math.random() * 10);
     // var cards = [];
@@ -76,7 +78,8 @@ function App() {
     //   return contact; 
     // })
 
-    function logUser() {
+    function logUser(userName) {
+      setUserName(userName);
       setIsLoggedIn(true);
     }
 
@@ -90,6 +93,8 @@ function App() {
           <div>
             <hr />
             <button onClick={logOutUser}>Log out</button>
+            {/* <h2>Hello {userName}</h2> */}
+            <h2>Hello {userName.name}</h2>
             <h1>My contacts</h1>
             {contacts
               .filter((contact)=>{
