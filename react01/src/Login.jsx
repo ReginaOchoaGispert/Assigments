@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 
 function Login(props) {
   var [registerInfo, setRegisterInfo] = useState({ 
@@ -51,17 +52,56 @@ function Login(props) {
   //   // setPassword(e.target.value);
   //   // console.log(password);
   // }
-  function processLogin(userName) {
-    // if(userName === "admin" && password === "password") {
-    if(registerInfo.userName === "admin" && registerInfo.password === "password") {
-      registerInfo.name = "Gabriel";
-      registerInfo.lname = "Castillo";
-      // props.handler();
-      props.handler(registerInfo);
-    }else {
-      setErrorMsg("Wrong login");
-    }
+  function processLogin(e/*userName*/) { //the 'e' represents the event of the clic
+    e.preventDefault();
+    var userName = registerInfo.userName;
+    var userPass = registerInfo.password;
+    axios
+      .post("/login",{ user: userName, pass: userPass }) //Im here creating a form, for the security
+      .then((res) => {
+        var data = res.data; //desempaca
+        console.log(data);
+        if(!data.hasOwnProperty("error")) {
+          console.log("Success");
+          registerInfo.name = data.name;
+          registerInfo.lname = data.lname;
+          props.handler(registerInfo);
+        } else {
+          setErrorMsg(data.message);
+        }
+      }).catch(err => {
+        console.error(err.error);
+      });
+    // axios
+    // .get("/login/"+userName+"/"+userPass).then((res) => {
+    //   var data = res.data; //desempaca
+    //   console.log(data);
+    //   if(!data.hasOwnProperty("error")) {
+    //     console.log("Success");
+    //     registerInfo.name = data.name;
+    //     registerInfo.lname = data.lname;
+    //     props.handler(registerInfo);
+    //   } else {
+    //     setErrorMsg(data.message);
+    //   }
+    // }).catch(err => {
+    //   console.error(err.error);
+    // });
   }
+
+    // if(userName === "admin" && password === "password") {
+  //   if (
+  //     registerInfo.userName === "admin" && 
+  //     registerInfo.password === "password"
+  //   ) {
+  //     registerInfo.name = "Gabriel";
+  //     registerInfo.lname = "Castillo";
+  //     // props.handler();
+  //     props.handler(registerInfo);
+  //   }else {
+  //     setErrorMsg("Wrong login");
+  //   }
+  // }
   return (
       <form>
           <input
