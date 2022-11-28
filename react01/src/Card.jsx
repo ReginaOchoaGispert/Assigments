@@ -5,13 +5,18 @@ function Card(props) {
     const image = "https://picsum.photos/200";
     return (
      <div className="Tarjeta">
-        <h2> { props.name } </h2>
-        <img 
-          src= { props.img }
-          alt="random"
-        />
-        <p> { props.phone } </p>
-        <p> { props.email } </p>
+        <div className="Claro">
+          <h2> { props.name } </h2>
+          <img className="Imagen"
+            src= { props.img }
+            alt="random"
+          />
+          <hr></hr>
+        </div>
+        <div className="Fuerte">
+          <p> { props.phone } </p>
+          <p> { props.email } </p>
+        </div>
      </div>
     );
 }
